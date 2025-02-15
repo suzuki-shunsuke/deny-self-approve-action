@@ -6,7 +6,9 @@ GitHub Action to deny self approval using [deny-self-approve](https://github.com
 
 <img width="932" alt="image" src="https://github.com/user-attachments/assets/aa7a506e-6195-4d6f-b8c3-76899e086f07" />
 
-About the goal and details of this action, please see [deny-self-approve](https://github.com/suzuki-shunsuke/deny-self-approve).
+This action prevents pull requests' self-approvals by dimissing approvals from people who push commits to pull requests.
+This action fails if no one who doesn't push commits to the pull request approves the pull request.
+This action uses [deny-self-approve](https://github.com/suzuki-shunsuke/deny-self-approve).
 
 ## How To Use
 
