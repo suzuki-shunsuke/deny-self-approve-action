@@ -1,2 +1,48 @@
 # deny-self-approve-action
-GitHub Action to deny self approval
+
+[![License](http://img.shields.io/badge/license-mit-blue.svg?style=flat-square)](https://raw.githubusercontent.com/suzuki-shunsuke/deny-self-approve-action/main/LICENSE) | [action.yaml](action.yaml)
+
+GitHub Action to deny self approval using [deny-self-approve](https://github.com/suzuki-shunsuke/deny-self-approve).
+
+<img width="932" alt="image" src="https://github.com/user-attachments/assets/aa7a506e-6195-4d6f-b8c3-76899e086f07" />
+
+About the goal and details of this action, please see [deny-self-approve](https://github.com/suzuki-shunsuke/deny-self-approve).
+
+## How To Use
+
+1. Run this action via pull_request_review events
+2. Add the job to required checks
+
+```yaml
+name: Check approval
+on:
+  pull_request_review:
+    types:
+      - submitted
+      - edited
+jobs:
+  check-approval:
+    timeout-minutes: 10
+    runs-on: ubuntu-24.04
+    permissions:
+      pull-requests: write
+    steps:
+      - uses: suzuki-sunsuke/deny-self-approve@main
+```
+
+By default, this action posts a comment if the action fails.
+You can disable comments:
+
+```yaml
+- uses: suzuki-sunsuke/deny-self-approve@main
+  with:
+    comment: "false"
+```
+
+### How does this action prevent self-approval?
+
+A pull request can't be merged until someone approves the pull request because the job is required.
+When someone who pushed commits to the pull request approves the pull request, this workflow is triggered and self-approval is dismissed and the job fails.
+The pull request can't be merged because the required job fails and the self-approval is dismissed.
+If someone who doesn't push any commit to the pull request approves the pull request, the workflow is triggerred and the job passes. Then the pull request can be merged.
+That's how this action prevents self-approval.
