@@ -13,7 +13,7 @@ inputs:
   comment:
     description: Whether this action posts a comment
     required: false
-    default: "true"
+    default: "false"
 runs:
   using: composite
   steps:

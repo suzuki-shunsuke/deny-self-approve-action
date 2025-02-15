@@ -32,13 +32,12 @@ jobs:
       - uses: suzuki-sunsuke/deny-self-approve@main
 ```
 
-By default, this action posts a comment if the action fails.
-You can disable comments:
+You can post comments:
 
 ```yaml
 - uses: suzuki-sunsuke/deny-self-approve@main
   with:
-    comment: "false"
+    comment: "true"
 ```
 
 ### How does this action prevent self-approval?
