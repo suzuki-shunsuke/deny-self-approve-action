@@ -35,7 +35,11 @@ runs:
         AQUA_CONFIG: ${{ steps.aqua_config.outputs.value }}
         GITHUB_TOKEN: ${{ steps.token.outputs.token }}
 
-    - run: github-comment exec -k deny-self-approve -- deny-self-approve validate --dismiss
+    - run: |
+        github-comment exec \
+          -k deny-self-approve \
+          --config "$GITHUB_ACTION_PATH/github-comment.yaml" \
+          -- deny-self-approve validate --dismiss
       shell: bash
       env:
         AQUA_CONFIG: ${{ steps.aqua_config.outputs.value }}
