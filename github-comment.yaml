@@ -5,8 +5,6 @@ exec:
   deny-self-approve:
     - when: ExitCode != 0
       template: |
-        # :x: Self approval is forbidden
+        # :x: Approval is required from anyone who did not push commits to the pull request
 
         {{template "link" .}} | [deny-self-approve](https://github.com/suzuki-shunsuke/deny-self-approve)
-
-        Approval is required from anyone who did not push commits to the pull request.
