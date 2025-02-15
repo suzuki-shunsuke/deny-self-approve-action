@@ -46,5 +46,5 @@ You can disable comments:
 A pull request can't be merged until someone approves the pull request because the job is required.
 When someone who pushed commits to the pull request approves the pull request, this workflow is triggered and self-approval is dismissed and the job fails.
 The pull request can't be merged because the required job fails and the self-approval is dismissed.
-If someone who doesn't push any commit to the pull request approves the pull request, the workflow is triggerred and the job passes. Then the pull request can be merged.
+If someone who doesn't push any commit to the pull request approves the pull request, the workflow is triggered and the job passes. Then the pull request can be merged.
 That's how this action prevents self-approval.
