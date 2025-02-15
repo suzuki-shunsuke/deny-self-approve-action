@@ -24,7 +24,8 @@ jobs:
     timeout-minutes: 10
     runs-on: ubuntu-24.04
     permissions:
-      pull-requests: write
+      pull-requests: write # To dismiss self-approvals
+      contents: read # To list commits in pull requests
     steps:
       - uses: suzuki-shunsuke/deny-self-approve-action@main
 ```
