@@ -10,7 +10,7 @@ inputs:
       GitHub Access Token
       pull_requests:write - Dismiss approvals and post comments
     required: false
-  post_comment:
+  comment:
     description: Whether this action posts a comment
     required: false
     default: "true"
