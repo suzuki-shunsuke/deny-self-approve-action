@@ -10,6 +10,10 @@ inputs:
       GitHub Access Token
       pull_requests:write - Dismiss approvals and post comments
     required: false
+  post_comment:
+    description: Whether this action posts a comment
+    required: false
+    default: "true"
 runs:
   using: composite
   steps:
@@ -26,6 +30,7 @@ runs:
 
     - shell: bash
       run: github-comment -v
+      if: inputs.comment == 'true'
       env:
         AQUA_CONFIG: ${{ steps.aqua_config.outputs.value }}
         GITHUB_TOKEN: ${{ steps.token.outputs.token }}
@@ -36,11 +41,26 @@ runs:
         GITHUB_TOKEN: ${{ steps.token.outputs.token }}
 
     - run: |
-        github-comment exec \
+        if ! github-comment exec \
           -k deny-self-approve \
           --config "$GITHUB_ACTION_PATH/github-comment.yaml" \
-          -- deny-self-approve validate --dismiss
+          -- deny-self-approve validate --dismiss; then
+          echo "::error:: Approval is required from anyone who did not push commits to the pull request" >&2
+          exit 1
+        fi
       shell: bash
+      if: inputs.comment == 'true'
+      env:
+        AQUA_CONFIG: ${{ steps.aqua_config.outputs.value }}
+        GITHUB_TOKEN: ${{github.token}}
+
+    - run: |
+        if ! deny-self-approve validate --dismiss; then
+          echo "::error:: Approval is required from anyone who did not push commits to the pull request" >&2
+          exit 1
+        fi
+      shell: bash
+      if: inputs.comment != 'true'
       env:
         AQUA_CONFIG: ${{ steps.aqua_config.outputs.value }}
         GITHUB_TOKEN: ${{github.token}}
