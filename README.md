@@ -54,8 +54,7 @@ Please add the job `check-approval` to required checks.
 
 ```yaml
 name: Check approval
-on:
-  merge_group:
+on: merge_group
 jobs:
   check-approval:
     timeout-minutes: 10
