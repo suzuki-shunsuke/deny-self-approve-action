@@ -4,8 +4,6 @@
 
 GitHub Action to deny self approval using [deny-self-approve](https://github.com/suzuki-shunsuke/deny-self-approve).
 
-<img width="932" alt="image" src="https://github.com/user-attachments/assets/aa7a506e-6195-4d6f-b8c3-76899e086f07" />
-
 This action prevents pull requests' self-approvals by dimissing approvals from people who pushed commits to pull requests.
 This action fails if no one who didn't push commits to the pull request approves the pull request.
 This action uses [deny-self-approve](https://github.com/suzuki-shunsuke/deny-self-approve).
@@ -30,14 +28,6 @@ jobs:
       pull-requests: write
     steps:
       - uses: suzuki-sunsuke/deny-self-approve@main
-```
-
-You can post comments:
-
-```yaml
-- uses: suzuki-sunsuke/deny-self-approve@main
-  with:
-    comment: "true"
 ```
 
 ### How does this action prevent self-approval?
