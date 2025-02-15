@@ -2,8 +2,8 @@ name: Deny Self approvals
 description: Deny Self approvals
 author: Shunsuke Suzuki
 branding:
-  icon: git-commit
-  color: blue
+  icon: shield
+  color: purple
 inputs:
   github_token:
     description: |
