@@ -9,6 +9,7 @@ inputs:
     description: |
       GitHub Access Token
       pull_requests:write - Dismiss approvals
+      contents:read - List commits in pull requests
     required: false
 runs:
   using: composite
