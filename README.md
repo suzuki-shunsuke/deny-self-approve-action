@@ -19,7 +19,6 @@ on:
   pull_request_review:
     types:
       - submitted
-      - edited
 jobs:
   check-approval:
     timeout-minutes: 10
