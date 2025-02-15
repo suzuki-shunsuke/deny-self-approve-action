@@ -56,11 +56,10 @@ Please add the job `check-approval` to required checks.
 name: Check approval
 on:
   merge_group:
-permissions: {}
 jobs:
   check-approval:
     timeout-minutes: 10
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     permissions:
       pull-requests: write
       contents: read
@@ -72,12 +71,11 @@ You need to run the same name job via `pull_request` event to add pull requests 
 
 ```yaml
 name: Test
-on:
-  pull_request: {}
+on: pull_request
 jobs:
   check-approval:
     timeout-minutes: 10
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     permissions: {}
     if: "false" # The job is always skipped.
     steps:
