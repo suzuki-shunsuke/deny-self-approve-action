@@ -27,7 +27,7 @@ jobs:
     permissions:
       pull-requests: write
     steps:
-      - uses: suzuki-sunsuke/deny-self-approve@main
+      - uses: suzuki-shunsuke/deny-self-approve-action@main
 ```
 
 ### How does this action prevent self-approval?
