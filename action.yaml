@@ -1,0 +1,42 @@
+name: Deny Self approvals
+description: Deny Self approvals
+author: Shunsuke Suzuki
+branding:
+  icon: git-commit
+  color: blue
+inputs:
+  github_token:
+    description: |
+      GitHub Access Token
+      pull_requests:write - Dismiss approvals and post comments
+    required: false
+runs:
+  using: composite
+  steps:
+    # Install deny-self-approve and github-comment by aqua
+    - run: echo "value=$GITHUB_ACTION_PATH/aqua/aqua.yaml" >> "$GITHUB_OUTPUT"
+      id: aqua_config
+      shell: bash
+    - uses: aquaproj/aqua-installer@e2d0136abcf70b7a2f6f505720640750557c4b33 # v3.1.1
+      with:
+        aqua_version: v2.44.0
+        skip_install_aqua: "true"
+      env:
+        AQUA_CONFIG: ${{ steps.aqua_config.outputs.value }}
+
+    - shell: bash
+      run: github-comment -v
+      env:
+        AQUA_CONFIG: ${{ steps.aqua_config.outputs.value }}
+        GITHUB_TOKEN: ${{ steps.token.outputs.token }}
+    - shell: bash
+      run: deny-self-aprove -v
+      env:
+        AQUA_CONFIG: ${{ steps.aqua_config.outputs.value }}
+        GITHUB_TOKEN: ${{ steps.token.outputs.token }}
+
+    - run: github-comment exec -k deny-self-approve -- deny-self-approve validate --dismiss
+      shell: bash
+      env:
+        AQUA_CONFIG: ${{ steps.aqua_config.outputs.value }}
+        GITHUB_TOKEN: ${{github.token}}
