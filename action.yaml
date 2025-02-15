@@ -30,7 +30,7 @@ runs:
         AQUA_CONFIG: ${{ steps.aqua_config.outputs.value }}
         GITHUB_TOKEN: ${{ steps.token.outputs.token }}
     - shell: bash
-      run: deny-self-aprove -v
+      run: deny-self-approve -v
       env:
         AQUA_CONFIG: ${{ steps.aqua_config.outputs.value }}
         GITHUB_TOKEN: ${{ steps.token.outputs.token }}
