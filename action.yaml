@@ -11,11 +11,6 @@ inputs:
       pull_requests:write - Dismiss approvals
       contents:read - List commits in pull requests
     required: false
-  ignore_not_linked_commit:
-    description: |
-      Ignore commits not linked to a GitHub User.
-    required: false
-    default: "false"
 outputs:
   has_not_linked_commit:
     description: Whether there are commits not linked to a GitHub User
@@ -41,30 +36,19 @@ runs:
         GITHUB_TOKEN: ${{ steps.token.outputs.token }}
 
     - run: |
-        opts=""
-        if [ "$IGNORE" = "true" ]; then
-          opts="--ignore-not-linked-commit"
-        fi
         tempfile=$(mktemp)
-        if ! deny-self-approve $opts validate --dismiss 2> >(tee -a "$tempfile" >&2); then
+        echo "has_not_linked_commit=false" >> "$GITHUB_OUTPUT"
+        if ! deny-self-approve validate --dismiss 2> >(tee -a "$tempfile" >&2); then
           if grep -q "commit isn't linked to a GitHub User" "$tempfile"; then
             echo "::error:: Commit isn't linked to a GitHub User. Please fix git config. https://docs.github.com/en/pull-requests/committing-changes-to-your-project/troubleshooting-commits/why-are-my-commits-linked-to-the-wrong-user" >&2
             echo "has_not_linked_commit=true" >> "$GITHUB_OUTPUT"
             exit 1
           fi
-          echo "has_not_linked_commit=false" >> "$GITHUB_OUTPUT"
           echo "::error:: Approval is required from anyone who did not push commits to the pull request https://github.com/suzuki-shunsuke/deny-self-approve-action" >&2
           exit 1
         fi
-        if grep -q "commit isn't linked to a GitHub User" "$tempfile"; then
-          echo "::warning:: Commit isn't linked to a GitHub User. Please fix git config. https://docs.github.com/en/pull-requests/committing-changes-to-your-project/troubleshooting-commits/why-are-my-commits-linked-to-the-wrong-user" >&2
-          echo "has_not_linked_commit=true" >> "$GITHUB_OUTPUT"
-          exit 0
-        fi
-        echo "has_not_linked_commit=false" >> "$GITHUB_OUTPUT"
       shell: bash
       id: deny
       env:
         AQUA_CONFIG: ${{ steps.aqua_config.outputs.value }}
         GITHUB_TOKEN: ${{github.token}}
-        IGNORE: ${{inputs.ignore_not_linked_commit}}
