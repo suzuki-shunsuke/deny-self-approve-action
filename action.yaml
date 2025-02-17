@@ -51,7 +51,7 @@ runs:
           exit 1
         fi
         if grep -q "commit isn't linked to a GitHub User" "$tempfile"; then
-          echo "::warn:: Commit isn't linked to a GitHub User. Please fix git config. https://docs.github.com/en/pull-requests/committing-changes-to-your-project/troubleshooting-commits/why-are-my-commits-linked-to-the-wrong-user" >&2
+          echo "::warning:: Commit isn't linked to a GitHub User. Please fix git config. https://docs.github.com/en/pull-requests/committing-changes-to-your-project/troubleshooting-commits/why-are-my-commits-linked-to-the-wrong-user" >&2
         fi
       shell: bash
       env:
