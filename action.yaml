@@ -11,9 +11,9 @@ inputs:
       pull_requests:write - Dismiss approvals
       contents:read - List commits in pull requests
     required: false
-  ignore_unknown_commit:
+  ignore_not_linked_commit:
     description: |
-      Ignore unknown commits.
+      Ignore commits not linked to a GitHub User.
     required: false
     default: "false"
 runs:
@@ -57,4 +57,4 @@ runs:
       env:
         AQUA_CONFIG: ${{ steps.aqua_config.outputs.value }}
         GITHUB_TOKEN: ${{github.token}}
-        IGNORE: ${{inputs.ignore_unknown_commit}}
+        IGNORE: ${{inputs.ignore_not_linked_commit}}
