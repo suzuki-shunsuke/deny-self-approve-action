@@ -11,6 +11,11 @@ inputs:
       pull_requests:write - Dismiss approvals
       contents:read - List commits in pull requests
     required: false
+  ignore_unknown_commit:
+    description: |
+      Ignore unknown commits.
+    required: false
+    default: "false"
 runs:
   using: composite
   steps:
@@ -32,7 +37,11 @@ runs:
         GITHUB_TOKEN: ${{ steps.token.outputs.token }}
 
     - run: |
-        if ! deny-self-approve validate --dismiss; then
+        opts=""
+        if [ "$IGNORE" = "true" ]; then
+          opts="--ignore-unknown-commit"
+        fi
+        if ! deny-self-approve $opts validate --dismiss; then
           echo "::error:: Approval is required from anyone who did not push commits to the pull request https://github.com/suzuki-shunsuke/deny-self-approve-action" >&2
           exit 1
         fi
@@ -40,3 +49,4 @@ runs:
       env:
         AQUA_CONFIG: ${{ steps.aqua_config.outputs.value }}
         GITHUB_TOKEN: ${{github.token}}
+        IGNORE: ${{inputs.ignore_unknown_commit}}

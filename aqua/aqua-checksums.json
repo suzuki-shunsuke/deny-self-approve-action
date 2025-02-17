@@ -1,33 +1,33 @@
 {
   "checksums": [
     {
-      "id": "github_release/github.com/suzuki-shunsuke/deny-self-approve/v0.2.2/deny-self-approve_darwin_amd64.tar.gz",
-      "checksum": "053C56411AFFBD136142CFD8E8EB5F5A7FACB676D862D244F1D8A425FB868E85",
+      "id": "github_release/github.com/suzuki-shunsuke/deny-self-approve/v0.2.3-0/deny-self-approve_darwin_amd64.tar.gz",
+      "checksum": "2B8C90B2FCEAC7E5D6E4B472CE33DD8298AA60AE4EEADDBEDE2EC045D93BDF59",
       "algorithm": "sha256"
     },
     {
-      "id": "github_release/github.com/suzuki-shunsuke/deny-self-approve/v0.2.2/deny-self-approve_darwin_arm64.tar.gz",
-      "checksum": "1F723E0533895A8668585909242E8F99EB6A25A2DFC1D919CAAC29B0BC4E3E44",
+      "id": "github_release/github.com/suzuki-shunsuke/deny-self-approve/v0.2.3-0/deny-self-approve_darwin_arm64.tar.gz",
+      "checksum": "411B962B96F53B49E75D856EBC93F618C5A3134D73620E23908350AE01DB4A2C",
       "algorithm": "sha256"
     },
     {
-      "id": "github_release/github.com/suzuki-shunsuke/deny-self-approve/v0.2.2/deny-self-approve_linux_amd64.tar.gz",
-      "checksum": "1335D20398765284B7B6F550C2A2595C66851BE119E045D1CF958D7897EEA0F4",
+      "id": "github_release/github.com/suzuki-shunsuke/deny-self-approve/v0.2.3-0/deny-self-approve_linux_amd64.tar.gz",
+      "checksum": "6CEA5CF8F58839EBBA56B0384B15E9A8E73C24571A529BD6D05CF3B6B4ACCEF8",
       "algorithm": "sha256"
     },
     {
-      "id": "github_release/github.com/suzuki-shunsuke/deny-self-approve/v0.2.2/deny-self-approve_linux_arm64.tar.gz",
-      "checksum": "4E114BDB74C5D72E935FC061F80612DD382C50A177C4E10070D12B42069B83D2",
+      "id": "github_release/github.com/suzuki-shunsuke/deny-self-approve/v0.2.3-0/deny-self-approve_linux_arm64.tar.gz",
+      "checksum": "256FE6B915D130DDB64C7D266C3F890B2104FBC8F08878DDA97210595C005793",
       "algorithm": "sha256"
     },
     {
-      "id": "github_release/github.com/suzuki-shunsuke/deny-self-approve/v0.2.2/deny-self-approve_windows_amd64.zip",
-      "checksum": "96800EAFFBB9912DA4FBB020DF08481FC274C09CAF2154CDB054FB9DAD2860E9",
+      "id": "github_release/github.com/suzuki-shunsuke/deny-self-approve/v0.2.3-0/deny-self-approve_windows_amd64.zip",
+      "checksum": "8A33C89C04B3E3251C0EC69B5C4F6B29DBDE324FC7785AA6938EE500E1821641",
       "algorithm": "sha256"
     },
     {
-      "id": "github_release/github.com/suzuki-shunsuke/deny-self-approve/v0.2.2/deny-self-approve_windows_arm64.zip",
-      "checksum": "4245E59BBF1CD7AD5012B703361B6113172D03B02427C3A0F84C406925CD2E16",
+      "id": "github_release/github.com/suzuki-shunsuke/deny-self-approve/v0.2.3-0/deny-self-approve_windows_arm64.zip",
+      "checksum": "219CDC2A3D41F2EE8E70F521C7AA014BF22762D0BFBF224339696D41D7A7CE23",
       "algorithm": "sha256"
     },
     {
