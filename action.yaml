@@ -11,6 +11,10 @@ inputs:
       pull_requests:write - Dismiss approvals
       contents:read - List commits in pull requests
     required: false
+outputs:
+  has_not_linked_commit:
+    description: Whether there are commits not linked to a GitHub User
+    value: ${{ steps.deny.outputs.has_not_linked_commit }}
 runs:
   using: composite
   steps:
@@ -32,11 +36,19 @@ runs:
         GITHUB_TOKEN: ${{ steps.token.outputs.token }}
 
     - run: |
-        if ! deny-self-approve validate --dismiss; then
+        tempfile=$(mktemp)
+        echo "has_not_linked_commit=false" >> "$GITHUB_OUTPUT"
+        if ! deny-self-approve validate --dismiss 2> >(tee -a "$tempfile" >&2); then
+          if grep -q "commit isn't linked to a GitHub User" "$tempfile"; then
+            echo "::error:: Commit isn't linked to a GitHub User. Please fix git config. https://docs.github.com/en/pull-requests/committing-changes-to-your-project/troubleshooting-commits/why-are-my-commits-linked-to-the-wrong-user" >&2
+            echo "has_not_linked_commit=true" >> "$GITHUB_OUTPUT"
+            exit 1
+          fi
           echo "::error:: Approval is required from anyone who did not push commits to the pull request https://github.com/suzuki-shunsuke/deny-self-approve-action" >&2
           exit 1
         fi
       shell: bash
+      id: deny
       env:
         AQUA_CONFIG: ${{ steps.aqua_config.outputs.value }}
         GITHUB_TOKEN: ${{github.token}}
