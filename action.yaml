@@ -52,12 +52,14 @@ runs:
             echo "has_not_linked_commit=true" >> "$GITHUB_OUTPUT"
             exit 1
           fi
+          echo "has_not_linked_commit=false" >> "$GITHUB_OUTPUT"
           echo "::error:: Approval is required from anyone who did not push commits to the pull request https://github.com/suzuki-shunsuke/deny-self-approve-action" >&2
           exit 1
         fi
         if grep -q "commit isn't linked to a GitHub User" "$tempfile"; then
           echo "::warning:: Commit isn't linked to a GitHub User. Please fix git config. https://docs.github.com/en/pull-requests/committing-changes-to-your-project/troubleshooting-commits/why-are-my-commits-linked-to-the-wrong-user" >&2
           echo "has_not_linked_commit=true" >> "$GITHUB_OUTPUT"
+          exit 0
         fi
         echo "has_not_linked_commit=false" >> "$GITHUB_OUTPUT"
       shell: bash
