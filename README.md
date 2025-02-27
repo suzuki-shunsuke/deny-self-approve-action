@@ -29,7 +29,7 @@ jobs:
     permissions:
       contents: read # To list commits in pull requests
     steps:
-      - uses: suzuki-shunsuke/deny-self-approve-action@85a0ec0a189b083a84a95d37766f6f6df5aea1ba # v0.1.0
+      - uses: suzuki-shunsuke/deny-self-approve-action@9ee0a3ee1ed44415a065b05291560487c7847db3 # v0.2.0
 ```
 
 A pull request can't be merged until someone approves the pull request because the job is required.
@@ -54,7 +54,7 @@ jobs:
       pull-requests: write
       contents: read
     steps:
-      - uses: suzuki-shunsuke/deny-self-approve-action@85a0ec0a189b083a84a95d37766f6f6df5aea1ba # v0.1.0
+      - uses: suzuki-shunsuke/deny-self-approve-action@9ee0a3ee1ed44415a065b05291560487c7847db3 # v0.2.0
 ```
 
 You need to run the same name job via `pull_request` event to add pull requests to Merge Queue.
