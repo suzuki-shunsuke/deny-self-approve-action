@@ -38,7 +38,7 @@ runs:
     - run: |
         tempfile=$(mktemp)
         echo "has_not_linked_commit=false" >> "$GITHUB_OUTPUT"
-        if ! deny-self-approve validate --dismiss 2> >(tee -a "$tempfile" >&2); then
+        if ! deny-self-approve validate 2> >(tee -a "$tempfile" >&2); then
           if grep -q "commit isn't linked to a GitHub User" "$tempfile"; then
             echo "::error:: Commit isn't linked to a GitHub User. https://github.com/suzuki-shunsuke/deny-self-approve/blob/main/docs/001.md" >&2
             echo "has_not_linked_commit=true" >> "$GITHUB_OUTPUT"
