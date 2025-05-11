@@ -5,6 +5,14 @@
 GitHub Action to deny self approval using [deny-self-approve](https://github.com/suzuki-shunsuke/deny-self-approve).
 For details, please see [deny-self-approve](https://github.com/suzuki-shunsuke/deny-self-approve).
 
+## :warning: Deprecated. Please use [validate-pr-review-action](https://github.com/suzuki-shunsuke/validate-pr-review-action) :warning:
+
+validate-pr-review-action is a successor of deny-self-approve.
+
+https://github.com/suzuki-shunsuke/validate-pr-review-action
+
+---
+
 ## How To Use
 
 There are two options:
